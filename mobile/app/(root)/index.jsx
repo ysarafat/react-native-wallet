@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useEffect } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import BalanceCard from "../../components/BalanceCard";
 import PageLoader from "../../components/PageLoader";
 import { SignOutButton } from "../../components/SignOutButton";
 import { useTransactions } from "../../hooks/useTransactions";
@@ -51,6 +52,8 @@ export default function Page() {
             <SignOutButton />
           </View>
         </View>
+        {/* balance card */}
+        <BalanceCard summary={summary} />
       </View>
     </View>
   );

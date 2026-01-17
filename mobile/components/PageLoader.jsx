@@ -1,5 +1,5 @@
-import { COLORS } from "@//constants/colors";
 import { styles } from "@/assets/styles/home.styles";
+import { COLORS } from "@/constants/colors";
 import { ActivityIndicator, View } from "react-native";
 
 const PageLoader = () => {

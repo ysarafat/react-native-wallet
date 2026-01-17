@@ -261,4 +261,10 @@ export const styles = StyleSheet.create({
   transactionsListContent: {
     paddingBottom: 20,
   },
+  divider: {
+    width: 1,
+    backgroundColor: COLORS.primary,
+    marginHorizontal: 16,
+    opacity: 0.2,
+  },
 });
