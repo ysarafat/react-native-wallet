@@ -21,9 +21,9 @@ const BalanceCard = ({ summary }) => {
         <View style={styles.divider} />
         {/* expense */}
         <View style={styles.balanceStatItem}>
-          <Text style={styles.balanceStatLabel}>Income</Text>
+          <Text style={styles.balanceStatLabel}>Expense</Text>
           <Text style={[styles.balanceStatAmount, { color: COLORS.expense }]}>
-            -&#2547;{parseFloat(summary?.income).toFixed(2)}
+            -&#2547;{parseFloat(summary?.expense).toFixed(2)}
           </Text>
         </View>
       </View>

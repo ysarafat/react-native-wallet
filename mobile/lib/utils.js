@@ -1,10 +1,27 @@
 // lib/utils.js
 export function formatDate(dateString) {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   const date = new Date(dateString);
 
-  return date.toLocaleDateString("bn-BD", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+
+  const month = months[monthIndex];
+
+  return `${day} ${month} ${year}`;
 }
