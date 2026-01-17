@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
+import job from "./config/cron.js";
 import { sql } from "./config/db.js";
 import ratelimiter from "./middleware/rateLimiter.js";
 
@@ -8,7 +9,7 @@ const PORT = process.env.PORT;
 const app = express();
 app.use(express.json());
 app.use(ratelimiter);
-
+if (process.env.NODE_ENV === "production") job.start();
 async function initDB() {
   try {
     await sql`CREATE TABLE IF NOT EXISTS transactions(
@@ -25,7 +26,9 @@ async function initDB() {
     process.exit(1);
   }
 }
-
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ message: "Server is OK" });
+});
 app.get("/api/transactions/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
