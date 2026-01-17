@@ -2,13 +2,12 @@ import dotenv from "dotenv";
 import express from "express";
 import job from "./config/cron.js";
 import { sql } from "./config/db.js";
-import ratelimiter from "./middleware/rateLimiter.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
 const app = express();
 app.use(express.json());
-app.use(ratelimiter);
+// app.use(ratelimiter);
 if (process.env.NODE_ENV === "production") job.start();
 async function initDB() {
   try {
