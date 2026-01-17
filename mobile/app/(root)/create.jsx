@@ -53,7 +53,7 @@ export default function CreateScreen() {
         : Math.abs(parseFloat(amount));
 
       const response = await fetch(
-        `https://react-native-wallet-2hg8.onrender.com/api/transactions`,
+        `https://react-native-wallet-eight.vercel.app/api/transactions`,
         {
           method: "POST",
           headers: {

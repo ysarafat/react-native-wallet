@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-const API_URL = "https://react-native-wallet-2hg8.onrender.com/api";
+const API_URL = "https://react-native-wallet-eight.vercel.app/api";
 
 export const useTransactions = (userId) => {
   const [transactions, setTransactions] = useState([]);
@@ -9,7 +9,7 @@ export const useTransactions = (userId) => {
     income: 0,
     expenses: 0,
   });
-  const [isLoading, setIsLoading] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchTransactions = useCallback(async () => {
     try {
