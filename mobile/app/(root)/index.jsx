@@ -2,16 +2,18 @@ import { styles } from "@/assets/styles/home.styles";
 import { useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Alert,
   FlatList,
   Image,
+  RefreshControl,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import BalanceCard from "../../components/BalanceCard";
+import NoTransactionsFound from "../../components/NoTransactionsFound";
 import PageLoader from "../../components/PageLoader";
 import { SignOutButton } from "../../components/SignOutButton";
 import { TransactionItem } from "../../components/TransactionItem";
@@ -20,9 +22,15 @@ import { useTransactions } from "../../hooks/useTransactions";
 export default function Page() {
   const { user } = useUser();
   const userId = user?.id;
+  const [refreshing, setRefreshing] = useState(false);
 
   const { transactions, summary, loadData, isLoading, deleteTransaction } =
     useTransactions(userId);
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await loadData();
+    setRefreshing(false);
+  };
   useEffect(() => {
     loadData();
   }, [loadData]);
@@ -89,6 +97,11 @@ export default function Page() {
         renderItem={(item) => (
           <TransactionItem item={item.item} onDelete={handleDelete} />
         )}
+        ListEmptyComponent={<NoTransactionsFound />}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       />
     </View>
   );

@@ -11,7 +11,7 @@ const redis = new Redis({
 // Rate limiter instance
 const ratelimit = new Ratelimit({
   redis,
-  limiter: Ratelimit.slidingWindow(10, "60 s"),
+  limiter: Ratelimit.slidingWindow(100, "60 s"),
 });
 
 export default ratelimit;
